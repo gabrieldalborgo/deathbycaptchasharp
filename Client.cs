@@ -308,12 +308,12 @@ namespace DeathByCaptchaSharp
                         var stringContent = this.encoding.GetString(byteArray, 0, byteArray.Length);
                         return JsonConvert.DeserializeObject<T>(stringContent);
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        throw new NotImplementedException();
+                        throw new NotImplementedException($"Error|cmd:{cmd}|httpStatusCode:{response.StatusCode}", ex);
                     }
                 default:
-                    throw new NotImplementedException();
+                    throw new NotImplementedException($"Error|cmd:{cmd}|httpStatusCode:{response.StatusCode}");
             }
         }
 
